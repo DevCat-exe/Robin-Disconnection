@@ -8,6 +8,7 @@ interface Post {
   description?: string;
   image_url: string;
   date_created: string;
+  created_at?: string;
 }
 
 interface SidebarProps {
@@ -75,8 +76,9 @@ export function Sidebar({ posts, category, onPostSelect }: SidebarProps) {
               {post.title}
             </div>
 
-            <div className="suggested-date text-xs text-red-800">
-              {new Date(post.date_created).toLocaleDateString()}
+            <div className="suggested-date text-xs text-red-800 space-y-1">
+              <div>Posted: {new Date(post.date_created).toLocaleDateString()}</div>
+              {post.created_at && <div>Created: {new Date(post.created_at).toLocaleDateString()}</div>}
             </div>
           </motion.div>
         ))}

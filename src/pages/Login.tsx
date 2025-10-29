@@ -77,7 +77,7 @@ export function Login() {
           className="relative z-10 mr-4 ml-4"
         >
           {/* Glitchy Border */}
-          <div className="glitch-border bg-black/90 border-2 border-red-900 rounded-sm p-8">
+          <div className="glitch-border bg-black/90 border-2 border-red-900 rounded-sm p-12">
             {/* Static noise background */}
             <div
               className="absolute inset-0 opacity-10 pointer-events-none rounded-sm"
@@ -142,7 +142,7 @@ export function Login() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full bg-black/50 border-2 border-red-900 rounded-sm px-4 py-3 text-gray-200 placeholder-red-800/50 focus:border-red-600 focus:outline-none transition-colors"
+                    className="w-full bg-black/50 border-2 border-red-900 rounded-sm px-6 py-3 text-gray-200 placeholder-red-800/50 focus:border-red-600 focus:outline-none transition-colors"
                     placeholder="********"
                     required
                   />
@@ -153,15 +153,13 @@ export function Login() {
               {/* Login Button */}
               <motion.button
                 type="submit"
-                className="w-full bg-red-900/20 hover:bg-red-900/40 border-2 border-red-600 text-red-400 hover:text-red-300 py-3 px-4 rounded-sm transition-all duration-300 group"
-                whileHover={{ scale: 1.02 }}
+                className="w-full bg-red-900 hover:bg-red-700 text-white py-3 px-4 rounded-sm transition-all duration-300 relative group"
+                whileHover={{ scale: 1.02, backgroundColor: '#dc2626' }}
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="tracking-widest text-sm">
                   INITIATE CONNECTION
                 </span>
-                {/* Glitch effect on hover */}
-                <div className="absolute inset-0 bg-red-600/0 group-hover:bg-red-600/10 rounded-sm transition-all duration-300"></div>
               </motion.button>
             </form>
 

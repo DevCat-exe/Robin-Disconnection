@@ -51,7 +51,7 @@ export function PostCard({ post }: PostCardProps) {
           {/* Show created_at if exists */}
           {post.created_at && (
             <div className="mt-1 opacity-70">
-              Created: {new Date(post.created_at).toLocaleString()}
+              Created: {new Date(post.created_at).toLocaleDateString()}
             </div>
           )}
         </div>

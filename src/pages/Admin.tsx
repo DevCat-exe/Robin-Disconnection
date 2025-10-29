@@ -14,11 +14,17 @@ export function Admin() {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [createdAtDate, setCreatedAtDate] = useState('');
   const [category, setCategory] = useState('arts');
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    // Set default created_at to now
+    setCreatedAtDate(new Date().toISOString().split('T')[0]);
+  }, []);
 
   useEffect(() => {
     checkUser();
@@ -79,12 +85,14 @@ export function Admin() {
       }
 
       // Prepare post data
+      const now = new Date();
+      const createdTimestamp = new Date(createdAtDate + 'T' + now.toTimeString().split(' ')[0]);
       const postData = {
         title,
         description: description,
         image_url: imageUrl,
-        date_created: new Date().toISOString().split('T')[0],
-        created_at: new Date().toISOString(),
+        date_created: new Date().toISOString().split('T')[0], // Always today's date for display
+        created_at: createdTimestamp.toISOString(),
       };
 
       toast.dismiss(loadingToast);
@@ -156,15 +164,13 @@ export function Admin() {
           >
             ADMIN PANEL
           </motion.h1>
-          <motion.button
+          <button
             onClick={handleLogout}
-            className="bg-red-900/20 hover:bg-red-900/40 border-2 border-red-600 text-red-400 hover:text-red-300 py-2 px-4 rounded-sm transition-all duration-300 relative overflow-hidden group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center justify-center px-8 py-3 bg-black/80 backdrop-blur-sm border border-red-900 hover:border-red-600 text-red-400 hover:text-red-300 rounded-sm transition-all duration-300 group relative overflow-hidden"
           >
-            <span className="relative z-10 tracking-widest text-sm">LOGOUT</span>
-            <div className="absolute inset-0 bg-red-600/0 group-hover:bg-red-600/10 transition-all duration-300"></div>
-          </motion.button>
+            <div className="absolute inset-0 bg-red-900/5 group-hover:bg-red-900/20 transition-all duration-300"></div>
+            <span className="tracking-widest text-sm relative z-10 font-bold">LOGOUT</span>
+          </button>
         </div>
 
         {/* Form */}
@@ -174,7 +180,7 @@ export function Admin() {
           style={{ width: '550px', minHeight: '650px' }}
           className="mx-auto"
         >
-          <div className="glitch-border bg-black/90 border-2 border-red-900 rounded-sm p-10">
+          <div className="glitch-border bg-black/90 border-2 border-red-900 rounded-sm p-12">
             {/* Static noise */}
             <div
               className="absolute inset-0 opacity-10 pointer-events-none rounded-sm"
@@ -224,16 +230,40 @@ export function Admin() {
                 />
               </div>
 
+              {/* Created At Date */}
+              <div>
+                <label className="block text-red-700 text-sm mb-2 tracking-widest">CREATED DATE</label>
+                <input
+                  type="date"
+                  value={createdAtDate}
+                  onChange={(e) => setCreatedAtDate(e.target.value)}
+                  className="w-full bg-black/50 border-2 border-red-900 rounded-sm px-6 py-3 text-gray-200 focus:border-red-600 focus:outline-none transition-colors"
+                />
+              </div>
+
               {/* Image Upload */}
               <div>
                 <label className="block text-red-700 text-sm mb-2 tracking-widest">IMAGE</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  className="w-full bg-black/50 border-2 border-red-900 rounded-sm px-6 py-3 text-gray-200 file:bg-red-900 file:border-0 file:rounded-sm file:px-4 file:py-1 file:text-gray-100 file:mr-4 file:hover:bg-red-800 transition-colors"
-                  required={!imageFile}
-                />
+                <div className="relative">
+                  <input
+                    ref={fileRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="hidden"
+                    required={!imageFile}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => fileRef.current?.click()}
+                    className="inline-flex items-center justify-center px-8 py-3 bg-black/80 backdrop-blur-sm border border-red-900 hover:border-red-600 text-red-400 hover:text-red-300 rounded-sm transition-all duration-300 group relative overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-red-900/5 group-hover:bg-red-900/20 transition-all duration-300"></div>
+                    <span className="tracking-widest text-sm relative z-10 font-bold">
+                      {imageFile ? imageFile.name : 'CHOOSE FILE'}
+                    </span>
+                  </button>
+                </div>
                 {!IMG_BB_API_KEY && (
                   <div className="mt-2 text-red-400 text-sm">
                     Warning: IMG_BB_API_KEY not set. Upload will fail.
@@ -242,18 +272,16 @@ export function Admin() {
               </div>
 
               {/* Submit Button */}
-              <motion.button
+              <button
                 type="submit"
                 disabled={loading || uploading}
-                className="w-full bg-red-900/20 hover:bg-red-900/40 border-2 border-red-600 text-red-400 hover:text-red-300 py-3 px-4 rounded-sm transition-all duration-300 group disabled:opacity-50 relative overflow-hidden"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center justify-center px-8 py-3 bg-black/80 backdrop-blur-sm border border-red-900 hover:border-red-600 text-red-400 hover:text-red-300 rounded-sm transition-all duration-300 group relative overflow-hidden disabled:opacity-50"
               >
-                <span className="relative z-10 tracking-widest text-sm">
+                <div className="absolute inset-0 bg-red-900/5 group-hover:bg-red-900/20 transition-all duration-300"></div>
+                <span className="tracking-widest text-sm relative z-10 font-bold">
                   {loading ? 'CREATING...' : uploading ? 'UPLOADING...' : 'CREATE POST'}
                 </span>
-                <div className="absolute inset-0 bg-red-600/0 group-hover:bg-red-600/10 transition-all duration-300"></div>
-              </motion.button>
+              </button>
             </form>
           </div>
         </motion.div>
