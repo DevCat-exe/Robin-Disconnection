@@ -8,6 +8,7 @@ interface Post {
   description?: string;
   image_url: string;
   date_created: string;
+  created_at?: string;
 }
 
 interface PostCardProps {
@@ -45,8 +46,14 @@ export function PostCard({ post }: PostCardProps) {
           </p>
         )}
 
-        <div className="post-date text-red-700 mt-4">
-          {new Date(post.date_created).toLocaleDateString()}
+        <div className="post-date text-red-700 mt-4 text-sm">
+          <div>Posted: {new Date(post.date_created).toLocaleDateString()}</div>
+          {/* Show created_at if exists */}
+          {post.created_at && (
+            <div className="mt-1 opacity-70">
+              Created: {new Date(post.created_at).toLocaleString()}
+            </div>
+          )}
         </div>
       </div>
     </motion.div>
