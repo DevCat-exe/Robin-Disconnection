@@ -70,15 +70,14 @@ export function Home() {
   };
 
   // Generate random rotation and scale for chaotic effect
-  const getRandomRotate = (index: number) => {
-    const rotations = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5];
-    const rotation = rotations[index % rotations.length];
-    return rotation;
+  const getRandomRotate = () => {
+    // Random between -8 and 8 degrees
+    return Math.floor(Math.random() * 17) - 8;
   };
 
-  const getRandomSize = (index: number) => {
+  const getRandomSize = () => {
     const sizes = ['small', 'medium', 'large'];
-    return sizes[index % sizes.length];
+    return sizes[Math.floor(Math.random() * sizes.length)];
   };
 
   const handleItemClick = (category: string) => {
@@ -145,84 +144,84 @@ export function Home() {
               }}
             >
               {allPosts.map((post, index) => {
-                const size = getRandomSize(index);
+                const size = getRandomSize();
                 const sizeClass =
                   size === 'small' ? 'w-full' :
                   size === 'large' ? 'w-full md:col-span-2' :
                   'w-full';
-
+                const rotate = getRandomRotate();
                 return (
                   <motion.div
                     key={`${post.category}-${post.id}`}
-                    className="break-inside-avoid mb-6"
+                    className="break-inside-avoid mb-8"
                     style={{
                       zIndex: 40,
+                      marginLeft: `${Math.floor(Math.random()*20)}px`,
+                      marginRight: `${Math.floor(Math.random()*20)}px`,
+                      marginTop: `${Math.floor(Math.random()*20)}px`,
+                      marginBottom: `${Math.floor(Math.random()*20)}px`,
                     }}
                     initial={{
                       opacity: 0,
                       y: 20,
-                      rotate: getRandomRotate(index),
+                      rotate: rotate,
                     }}
                     animate={{
                       opacity: 1,
                       y: 0,
-                      rotate: getRandomRotate(index),
+                      rotate: rotate,
                     }}
                     transition={{ duration: 0.6 }}
                     whileHover={{
-                      rotate: getRandomRotate(index) - 2,
-                      scale: 1.05,
+                      rotate: rotate - 2,
+                      scale: 1.07,
+                      boxShadow: '0 0 40px #ff1a1a55',
                     }}
                   >
                     <div
                       onClick={() => handleItemClick(post.category!)}
-                      className={`${sizeClass} cursor-pointer group relative bg-black border-2 border-red-900 hover:border-red-500 transition-all duration-300 hover:scale-105 hover:z-50`}
+                      className={`${sizeClass} cursor-pointer group relative bg-black border-2 border-red-900 hover:border-red-500 transition-all duration-300 hover:scale-105 hover:z-50 rounded-lg shadow-lg`}
                       style={{
                         boxShadow: '0 0 20px rgba(139, 0, 0, 0.3)',
+                        padding: '12px',
                       }}
                     >
                       {/* Glitch overlay */}
-                      <div className="absolute inset-0 bg-red-900/0 group-hover:bg-red-900/20 transition-all duration-300 pointer-events-none z-10"></div>
-
+                      <div className="absolute inset-0 bg-red-900/0 group-hover:bg-red-900/20 transition-all duration-300 pointer-events-none z-10 rounded-lg"></div>
                       {/* Image */}
-                      <div className="relative overflow-hidden">
+                      <div className="relative overflow-hidden rounded-md">
                         <img
                           src={post.image_url}
                           alt={post.title}
-                          className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-500"
+                          className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-500 rounded-md"
                           style={{
                             filter: 'contrast(1.1) brightness(0.9)',
                           }}
                         />
                         <div className="scanline-overlay"></div>
-
                         {/* Blood drip effect on hover */}
-                        <div className="absolute top-0 left-0 w-full h-2 bg-red-900/0 group-hover:bg-red-900/80 transition-all duration-500 group-hover:h-8"></div>
+                        <div className="absolute top-0 left-0 w-full h-2 bg-red-900/0 group-hover:bg-red-900/80 transition-all duration-500 group-hover:h-8 rounded-b-md"></div>
                       </div>
-
                       {/* Content */}
-                      <div className="p-4 bg-black/95 relative">
+                      <div className="p-4 bg-black/95 relative rounded-b-lg">
                         {/* Static noise background */}
                         <div
-                          className="absolute inset-0 opacity-5 pointer-events-none"
+                          className="absolute inset-0 opacity-5 pointer-events-none rounded-b-lg"
                           style={{
                             backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' /%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' /%3E%3C/svg%3E")',
                           }}
                         ></div>
-
                         <div className="text-xs text-red-700 mb-2 uppercase tracking-widest opacity-80">
                           [{post.category}]
                         </div>
-                        <h3 className="text-gray-200 group-hover:text-red-400 transition-colors duration-300 leading-snug relative z-10">
+                        <h3 className="text-gray-200 group-hover:text-red-400 transition-colors duration-300 leading-snug relative z-10 text-lg font-bold">
                           {post.title}
                         </h3>
-
                         {/* Corrupted text effect */}
                         <div className="mt-2 text-xs text-red-900/50 group-hover:text-red-700/80 transition-colors duration-300">
                           {'>> CLICK TO VIEW'}
                         </div>
                       </div>
-
                       {/* Corner accent */}
                       <div className="absolute top-0 right-0 w-0 h-0 border-t-8 border-r-8 border-red-900/50 group-hover:border-red-500 transition-all duration-300"></div>
                       <div className="absolute bottom-0 left-0 w-0 h-0 border-b-8 border-l-8 border-red-900/50 group-hover:border-red-500 transition-all duration-300"></div>

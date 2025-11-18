@@ -71,7 +71,7 @@ src/
 
 ### Admin Management
 
-1. Access via hidden footer link or `/login` URL
+1. Access via `/login` URL
 2. Login with Supabase credentials
 3. Upload images (auto-stored on ImgBB)
 4. Set title, description, category, date
