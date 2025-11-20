@@ -81,7 +81,7 @@ export function DeleteModal({ isOpen, onClose, onConfirm, title, message, loadin
 
                         {/* Buttons */}
                         <motion.div
-                            className="flex gap-4 justify-center"
+                            className="flex gap-6 justify-center"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.25 }}
