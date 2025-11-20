@@ -200,11 +200,11 @@ export function Admin() {
         >
           <motion.h1
             className="text-red-600 text-6xl mb-4 font-bold rgb-split"
-            style={{ fontFamily: 'Nosifer, cursive' }}
+
           >
             ADMIN INTERFACE
           </motion.h1>
-          <div className="text-red-700 text-lg tracking-widest opacity-70" style={{ fontFamily: 'VT323, monospace' }}>
+          <div className="text-red-700 text-lg tracking-widest opacity-70" >
             ▓▓▓ MASTER CONTROL PANEL ▓▓▓
           </div>
         </motion.div>
@@ -215,7 +215,7 @@ export function Admin() {
             onClick={handleLogout}
             className="px-8 py-3 bg-black/70 border-2 border-red-900/70 hover:border-red-600 text-red-500 font-bold text-base tracking-widest transition-all duration-300 hover:scale-105 rounded-sm shadow-lg"
             style={{
-              fontFamily: 'VT323, monospace',
+
               transform: logoutTransform,
               boxShadow: '0 0 20px rgba(255,26,26,0.2)',
             }}
@@ -233,7 +233,7 @@ export function Admin() {
           className="mx-auto"
         >
           {/* Tabs */}
-          <div className="horror-tabs" style={{ fontFamily: 'VT323, monospace' }}>
+          <div className="horror-tabs" >
             <button
               className={`horror-tab ${activeTab === 'create' ? 'active' : ''}`}
               onClick={() => setActiveTab('create')}
@@ -277,7 +277,7 @@ export function Admin() {
                   <div className="mb-6 p-4 bg-red-900/30 border border-red-700 rounded-sm">
                     <div className="flex items-center gap-3">
                       <div className="text-red-400 text-2xl pulse-warning">⚠️</div>
-                      <div className="text-red-400 text-sm" style={{ fontFamily: 'VT323, monospace' }}>
+                      <div className="text-red-400 text-sm" >
                         <strong>WARNING:</strong> IMG_BB_API_KEY not set. Image uploads will fail.
                       </div>
                     </div>
@@ -287,7 +287,7 @@ export function Admin() {
                 <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                   {/* Title Field */}
                   <div>
-                    <label className="block text-red-700 text-sm mb-2 tracking-widest font-bold uppercase" style={{ fontFamily: 'VT323, monospace' }}>
+                    <label className="block text-red-700 text-sm mb-2 tracking-widest font-bold uppercase" >
                       Title {title.length > 0 && <span className="text-red-500">({title.length}/100)</span>}
                     </label>
                     <input
@@ -295,7 +295,7 @@ export function Admin() {
                       value={title}
                       onChange={(e) => setTitle(e.target.value.slice(0, 100))}
                       className="w-full bg-black/70 border-2 border-red-900 rounded-sm px-4 py-3 text-gray-200 placeholder-red-800/50 focus:border-red-600 focus:outline-none transition-colors"
-                      style={{ fontFamily: 'VT323, monospace', fontSize: '1.1rem' }}
+                      style={{  fontSize: '1.1rem' }}
                       placeholder="Enter post title..."
                       required
                       maxLength={100}
@@ -304,14 +304,14 @@ export function Admin() {
 
                   {/* Description Field */}
                   <div>
-                    <label className="block text-red-700 text-sm mb-2 tracking-widest font-bold uppercase" style={{ fontFamily: 'VT323, monospace' }}>
+                    <label className="block text-red-700 text-sm mb-2 tracking-widest font-bold uppercase" >
                       Description {description.length > 0 && <span className="text-red-500">({description.length}/500)</span>}
                     </label>
                     <textarea
                       value={description}
                       onChange={(e) => setDescription(e.target.value.slice(0, 500))}
                       className="w-full bg-black/70 border-2 border-red-900 rounded-sm px-4 py-3 text-gray-200 placeholder-red-800/50 focus:border-red-600 focus:outline-none transition-colors resize-none"
-                      style={{ fontFamily: 'VT323, monospace', fontSize: '1.1rem' }}
+                      style={{  fontSize: '1.1rem' }}
                       placeholder="Enter description..."
                       rows={4}
                       maxLength={500}
@@ -320,14 +320,14 @@ export function Admin() {
 
                   {/* Category Field */}
                   <div>
-                    <label className="block text-red-700 text-sm mb-2 tracking-widest font-bold uppercase" style={{ fontFamily: 'VT323, monospace' }}>
+                    <label className="block text-red-700 text-sm mb-2 tracking-widest font-bold uppercase" >
                       Category
                     </label>
                     <select
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
                       className="w-full bg-black/70 border-2 border-red-900 rounded-sm px-4 py-3 text-gray-200 focus:border-red-600 focus:outline-none transition-colors cursor-pointer"
-                      style={{ fontFamily: 'VT323, monospace', fontSize: '1.1rem' }}
+                      style={{  fontSize: '1.1rem' }}
                     >
                       <option value="arts">🎨 Arts</option>
                       <option value="gifs">🎬 Gifs</option>
@@ -338,7 +338,7 @@ export function Admin() {
 
                   {/* Date Field */}
                   <div>
-                    <label className="block text-red-700 text-sm mb-2 tracking-widest font-bold uppercase" style={{ fontFamily: 'VT323, monospace' }}>
+                    <label className="block text-red-700 text-sm mb-2 tracking-widest font-bold uppercase" >
                       Created Date
                     </label>
                     <input
@@ -346,14 +346,14 @@ export function Admin() {
                       value={createdAtDate}
                       onChange={(e) => setCreatedAtDate(e.target.value)}
                       className="w-full bg-black/70 border-2 border-red-900 rounded-sm px-4 py-3 text-gray-200 focus:border-red-600 focus:outline-none transition-colors"
-                      style={{ fontFamily: 'VT323, monospace', fontSize: '1.1rem' }}
+                      style={{  fontSize: '1.1rem' }}
                       required
                     />
                   </div>
 
                   {/* Image Upload */}
                   <div>
-                    <label className="block text-red-700 text-sm mb-2 tracking-widest font-bold uppercase" style={{ fontFamily: 'VT323, monospace' }}>
+                    <label className="block text-red-700 text-sm mb-2 tracking-widest font-bold uppercase" >
                       Image Upload
                     </label>
                     <div
@@ -365,7 +365,7 @@ export function Admin() {
                     >
                       <input {...getInputProps()} />
                       <div className="text-red-600 text-4xl mb-3">📁</div>
-                      <div className="text-red-400 text-sm" style={{ fontFamily: 'VT323, monospace' }}>
+                      <div className="text-red-400 text-sm" >
                         {isDragActive ? (
                           <p>Drop the image here...</p>
                         ) : (
@@ -373,7 +373,7 @@ export function Admin() {
                         )}
                       </div>
                       {imageFile && (
-                        <div className="mt-3 text-red-500 text-sm font-bold" style={{ fontFamily: 'VT323, monospace' }}>
+                        <div className="mt-3 text-red-500 text-sm font-bold" >
                           ✓ {imageFile.name}
                         </div>
                       )}
@@ -388,7 +388,7 @@ export function Admin() {
                       className="image-preview-polaroid"
                     >
                       <img src={imagePreview} alt="Preview" className="w-full h-auto" />
-                      <div className="text-center mt-2 text-red-400 text-sm" style={{ fontFamily: 'VT323, monospace' }}>
+                      <div className="text-center mt-2 text-red-400 text-sm" >
                         Image Preview
                       </div>
                     </motion.div>
@@ -403,7 +403,7 @@ export function Admin() {
                       style={{
                         boxShadow: '0 0 30px rgba(255, 26, 26, 0.3)',
                         letterSpacing: '0.08em',
-                        fontFamily: 'VT323, monospace',
+
                         transform: submitTransform,
                       }}
                     >

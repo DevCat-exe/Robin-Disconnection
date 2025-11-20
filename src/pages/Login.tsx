@@ -116,14 +116,14 @@ export function Login() {
             >
               <motion.h1
                 className="glitch-text text-red-600 text-5xl mb-4 font-bold rgb-split"
-                style={{ fontFamily: 'VT323, monospace' }}
+
                 initial={{ skewX: 0 }}
                 animate={{ skewX: [-2, 2, 0] }}
                 transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
               >
                 ACCESS
               </motion.h1>
-              <div className="text-red-700 text-lg tracking-widest opacity-70" style={{ fontFamily: 'VT323, monospace' }}>
+              <div className="text-red-700 text-lg tracking-widest opacity-70" >
                 ▓▓▓ ADMIN GATEWAY ▓▓▓
               </div>
               <div className="w-16 h-0.5 bg-red-900 mx-auto mt-4"></div>
@@ -136,7 +136,7 @@ export function Login() {
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-8 p-4 bg-red-900/30 border border-red-700 rounded-sm backdrop-blur-sm"
               >
-                <div className="text-red-400 text-sm font-bold text-center" style={{ fontFamily: 'VT323, monospace', fontSize: '1rem' }}>
+                <div className="text-red-400 text-sm font-bold text-center" style={{  fontSize: '1rem' }}>
                   ⚠️ {error}
                 </div>
               </motion.div>
@@ -156,7 +156,7 @@ export function Login() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                <label className="block text-red-700 text-sm mb-3 tracking-widest font-bold uppercase" style={{ fontFamily: 'VT323, monospace' }}>
+                <label className="block text-red-700 text-sm mb-3 tracking-widest font-bold uppercase" >
                   Email Address
                 </label>
                 <div className="relative">
@@ -178,7 +178,7 @@ export function Login() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
               >
-                <label className="block text-red-700 text-sm mb-3 tracking-widest font-bold uppercase" style={{ fontFamily: 'VT323, monospace' }}>
+                <label className="block text-red-700 text-sm mb-3 tracking-widest font-bold uppercase" >
                   Password
                 </label>
                 <div className="relative">
@@ -209,7 +209,7 @@ export function Login() {
                     letterSpacing: '0.08em',
                     borderRadius: '0',
                     transform: submitTransform,
-                    fontFamily: 'VT323, monospace',
+
                   }}
                 >
                   {/* VHS static overlay */}
@@ -239,7 +239,7 @@ export function Login() {
                 transition={{ delay: 0.8 }}
               >
                 <div className="flex-1 h-px bg-red-900"></div>
-                <div className="px-4 text-red-700 text-sm tracking-widest" style={{ fontFamily: 'VT323, monospace' }}>OR</div>
+                <div className="px-4 text-red-700 text-sm tracking-widest" >OR</div>
                 <div className="flex-1 h-px bg-red-900"></div>
               </motion.div>
 
@@ -257,7 +257,7 @@ export function Login() {
                     letterSpacing: '0.08em',
                     borderRadius: '0',
                     transform: returnTransform,
-                    fontFamily: 'VT323, monospace',
+
                   }}
                 >
                   <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
@@ -277,7 +277,7 @@ export function Login() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.0 }}
             >
-              <div className="text-red-800 text-xs tracking-widest opacity-60" style={{ fontFamily: 'VT323, monospace' }}>
+              <div className="text-red-800 text-xs tracking-widest opacity-60" >
                 UNAUTHORIZED ACCESS PROHIBITED
               </div>
             </motion.div>

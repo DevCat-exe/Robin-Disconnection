@@ -105,7 +105,7 @@ export function PostManager() {
                     <span className="typing-dot"></span>
                     <span className="typing-dot"></span>
                 </div>
-                <span className="ml-4 text-red-600 tracking-widest" style={{ fontFamily: 'VT323, monospace', fontSize: '1.2rem' }}>
+                <span className="ml-4 text-red-600 tracking-widest" style={{  fontSize: '1.2rem' }}>
                     LOADING POSTS...
                 </span>
             </div>
@@ -123,14 +123,14 @@ export function PostManager() {
             >
                 {/* Category Filter */}
                 <div>
-                    <label className="block text-red-700 text-xs mb-2 tracking-widest font-bold uppercase" style={{ fontFamily: 'VT323, monospace' }}>
+                    <label className="block text-red-700 text-xs mb-2 tracking-widest font-bold uppercase" >
                         Filter by Category
                     </label>
                     <select
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
                         className="w-full bg-black/70 border-2 border-red-900 rounded-sm px-5 py-3 text-gray-200 focus:border-red-600 focus:outline-none transition-all duration-300 appearance-none cursor-pointer hover:border-red-700"
-                        style={{ fontFamily: 'VT323, monospace', fontSize: '1.1rem' }}
+                        style={{  fontSize: '1.1rem' }}
                     >
                         <option value="all">🌐 All Categories</option>
                         <option value="arts">🎨 Arts</option>
@@ -142,7 +142,7 @@ export function PostManager() {
 
                 {/* Search */}
                 <div>
-                    <label className="block text-red-700 text-xs mb-2 tracking-widest font-bold uppercase" style={{ fontFamily: 'VT323, monospace' }}>
+                    <label className="block text-red-700 text-xs mb-2 tracking-widest font-bold uppercase" >
                         Search by Title
                     </label>
                     <input
@@ -150,13 +150,13 @@ export function PostManager() {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="w-full bg-black/70 border-2 border-red-900 rounded-sm px-5 py-3 text-gray-200 placeholder-red-800/50 focus:border-red-600 focus:outline-none transition-all duration-300 hover:border-red-700"
-                        style={{ fontFamily: 'VT323, monospace', fontSize: '1.1rem' }}
+                        style={{  fontSize: '1.1rem' }}
                         placeholder="Type to search..."
                     />
                 </div>
 
                 {/* Results Count */}
-                <div className="text-red-700 text-sm tracking-widest" style={{ fontFamily: 'VT323, monospace' }}>
+                <div className="text-red-700 text-sm tracking-widest" >
                     SHOWING {filteredPosts.length} OF {posts.length} POSTS
                 </div>
             </motion.div>
@@ -169,10 +169,10 @@ export function PostManager() {
                     animate={{ opacity: 1 }}
                 >
                     <div className="text-6xl mb-4">📭</div>
-                    <div className="text-red-600 text-xl tracking-widest glitch-text" style={{ fontFamily: 'VT323, monospace' }}>
+                    <div className="text-red-600 text-xl tracking-widest glitch-text" >
                         NO POSTS FOUND
                     </div>
-                    <div className="text-red-800 text-sm mt-2" style={{ fontFamily: 'VT323, monospace' }}>
+                    <div className="text-red-800 text-sm mt-2" >
                         Try adjusting your filters
                     </div>
                 </motion.div>
@@ -214,7 +214,7 @@ export function PostManager() {
                                     <div className="scanline-overlay"></div>
                                     {/* Category Badge */}
                                     <div className="absolute top-2 left-2 bg-black/80 border border-red-900 px-3 py-1 rounded-sm">
-                                        <span className="text-red-600 text-xs font-bold tracking-widest uppercase" style={{ fontFamily: 'VT323, monospace' }}>
+                                        <span className="text-red-600 text-xs font-bold tracking-widest uppercase" >
                                             {post.category}
                                         </span>
                                     </div>
@@ -222,15 +222,15 @@ export function PostManager() {
 
                                 {/* Content */}
                                 <div className="p-4">
-                                    <h3 className="text-gray-200 font-bold mb-2 line-clamp-2 group-hover:text-red-400 transition-colors" style={{ fontFamily: 'VT323, monospace', fontSize: '1.2rem' }}>
+                                    <h3 className="text-gray-200 font-bold mb-2 line-clamp-2 group-hover:text-red-400 transition-colors" style={{  fontSize: '1.2rem' }}>
                                         {post.title}
                                     </h3>
                                     {post.description && (
-                                        <p className="text-gray-500 text-sm mb-3 line-clamp-2" style={{ fontFamily: 'VT323, monospace' }}>
+                                        <p className="text-gray-500 text-sm mb-3 line-clamp-2" >
                                             {post.description}
                                         </p>
                                     )}
-                                    <div className="text-red-800 text-xs mb-4" style={{ fontFamily: 'VT323, monospace' }}>
+                                    <div className="text-red-800 text-xs mb-4" >
                                         {post.date_created}
                                     </div>
 
@@ -238,7 +238,7 @@ export function PostManager() {
                                     <button
                                         onClick={() => setDeleteModal({ isOpen: true, post })}
                                         className="w-full btn-horror-danger px-4 py-2 rounded-sm text-sm"
-                                        style={{ fontFamily: 'VT323, monospace' }}
+
                                     >
                                         🗑️ DELETE POST
                                     </button>
