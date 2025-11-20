@@ -27,7 +27,7 @@ export function Home() {
   useEffect(() => {
     fetchAllData();
     // Use fixed background URL for now
-    setBackgroundImage('https://gcxpgswjsjcoahbqtehh.supabase.co/storage/v1/object/public/backgrounds/blood-texture.png');
+    setBackgroundImage('https://gcxpgswjsjcoahbqtehh.supabase.co/storage/v1/object/public/backgrounds/image.png');
   }, []);
 
   const shuffleArray = <T,>(array: T[]): T[] => {
@@ -97,7 +97,7 @@ export function Home() {
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: backgroundImage ? `url(${backgroundImage})` : 'none',
-          filter: 'blur(6px) brightness(0.6)',
+          filter: 'blur(0px) brightness(0.6)',
           zIndex: -1,
         }}
       />

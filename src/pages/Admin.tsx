@@ -182,8 +182,8 @@ export function Admin() {
       <div
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url("https://gcxpgswjsjcoahbqtehh.supabase.co/storage/v1/object/public/backgrounds/blood-texture.png")',
-          filter: 'blur(6px) brightness(0.6)',
+          backgroundImage: 'url("https://gcxpgswjsjcoahbqtehh.supabase.co/storage/v1/object/public/backgrounds/image.png")',
+          filter: 'blur(0px) brightness(0.6)',
           zIndex: -1,
         }}
       />
@@ -295,7 +295,7 @@ export function Admin() {
                       value={title}
                       onChange={(e) => setTitle(e.target.value.slice(0, 100))}
                       className="w-full bg-black/70 border-2 border-red-900 rounded-sm px-4 py-3 text-gray-200 placeholder-red-800/50 focus:border-red-600 focus:outline-none transition-colors"
-                      style={{  fontSize: '1.1rem' }}
+                      style={{ fontSize: '1.1rem' }}
                       placeholder="Enter post title..."
                       required
                       maxLength={100}
@@ -311,7 +311,7 @@ export function Admin() {
                       value={description}
                       onChange={(e) => setDescription(e.target.value.slice(0, 500))}
                       className="w-full bg-black/70 border-2 border-red-900 rounded-sm px-4 py-3 text-gray-200 placeholder-red-800/50 focus:border-red-600 focus:outline-none transition-colors resize-none"
-                      style={{  fontSize: '1.1rem' }}
+                      style={{ fontSize: '1.1rem' }}
                       placeholder="Enter description..."
                       rows={4}
                       maxLength={500}
@@ -327,7 +327,7 @@ export function Admin() {
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
                       className="w-full bg-black/70 border-2 border-red-900 rounded-sm px-4 py-3 text-gray-200 focus:border-red-600 focus:outline-none transition-colors cursor-pointer"
-                      style={{  fontSize: '1.1rem' }}
+                      style={{ fontSize: '1.1rem' }}
                     >
                       <option value="arts">🎨 Arts</option>
                       <option value="gifs">🎬 Gifs</option>
@@ -346,7 +346,7 @@ export function Admin() {
                       value={createdAtDate}
                       onChange={(e) => setCreatedAtDate(e.target.value)}
                       className="w-full bg-black/70 border-2 border-red-900 rounded-sm px-4 py-3 text-gray-200 focus:border-red-600 focus:outline-none transition-colors"
-                      style={{  fontSize: '1.1rem' }}
+                      style={{ fontSize: '1.1rem' }}
                       required
                     />
                   </div>

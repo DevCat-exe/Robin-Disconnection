@@ -62,8 +62,8 @@ export function Login() {
       <div
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url("https://gcxpgswjsjcoahbqtehh.supabase.co/storage/v1/object/public/backgrounds/blood-texture.png")',
-          filter: 'blur(6px) brightness(0.6)',
+          backgroundImage: 'url("https://gcxpgswjsjcoahbqtehh.supabase.co/storage/v1/object/public/backgrounds/image.png")',
+          filter: 'blur(0px) brightness(0.6)',
           zIndex: -1,
         }}
       />
@@ -136,7 +136,7 @@ export function Login() {
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-8 p-4 bg-red-900/30 border border-red-700 rounded-sm backdrop-blur-sm"
               >
-                <div className="text-red-400 text-sm font-bold text-center" style={{  fontSize: '1rem' }}>
+                <div className="text-red-400 text-sm font-bold text-center" style={{ fontSize: '1rem' }}>
                   ⚠️ {error}
                 </div>
               </motion.div>

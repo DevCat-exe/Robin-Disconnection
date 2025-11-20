@@ -10,8 +10,8 @@ export function NotFound() {
       <div
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url("https://gcxpgswjsjcoahbqtehh.supabase.co/storage/v1/object/public/backgrounds/blood-texture.png")',
-          filter: 'blur(6px) brightness(0.4)',
+          backgroundImage: 'url("https://gcxpgswjsjcoahbqtehh.supabase.co/storage/v1/object/public/backgrounds/image.png")',
+          filter: 'blur(0px) brightness(0.4)',
           zIndex: -1,
         }}
       />
