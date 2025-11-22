@@ -7,8 +7,13 @@ import { Navbar } from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
 import { GalleryItem } from '../components/GalleryItem';
 
+// Update interface for GalleryItem
+export interface GalleryItemPost extends Post {
+  category: string;
+}
+
 interface Post {
-  id: number;
+  id: string; // UUID from Supabase
   title: string;
   desc?: string;
   description?: string;
@@ -16,6 +21,11 @@ interface Post {
   date_created: string;
   created_at?: string;
   category?: string;
+}
+
+// Update interface for GalleryItem
+export interface GalleryItemPost extends Post {
+  category: string;
 }
 
 export function Home() {
@@ -82,8 +92,12 @@ export function Home() {
     }
   };
 
-  const handleItemClick = (category: string) => {
-    navigate(`/${category}`);
+  const handleItemClick = (category: string, postId?: number) => {
+    if (postId) {
+      navigate(`/${category}/${postId}`);
+    } else {
+      navigate(`/${category}`);
+    }
   };
 
   if (loading) {

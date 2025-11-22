@@ -15,6 +15,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/:category" element={<Category />} />
+        <Route path="/:category/:postId" element={<Category />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </ErrorBoundary>

@@ -10,7 +10,7 @@ import { LoadingGlitch } from '../components/LoadingGlitch';
 import { supabase } from '../lib/supabaseClient';
 
 interface Post {
-  id: number;
+  id: string; // UUID from Supabase
   title: string;
   desc?: string;
   description?: string;
@@ -20,7 +20,7 @@ interface Post {
 }
 
 export function Category() {
-  const { category } = useParams<{ category: string }>();
+  const { category, postId } = useParams<{ category: string; postId?: string }>();
   const navigate = useNavigate();
 
   const [posts, setPosts] = useState<Post[]>([]);
@@ -59,7 +59,13 @@ export function Category() {
         setSelectedPost(null);
       } else {
         setPosts(data || []);
-        setSelectedPost(data && data.length > 0 ? data[0] : null);
+        // Select specific post if postId is provided, otherwise first post
+        if (postId && data) {
+          const targetPost = data.find(post => post.id === postId);
+          setSelectedPost(targetPost || (data.length > 0 ? data[0] : null));
+        } else {
+          setSelectedPost(data && data.length > 0 ? data[0] : null);
+        }
       }
     } catch (error) {
       console.error(`Error in fetchPosts for ${cat}:`, error);

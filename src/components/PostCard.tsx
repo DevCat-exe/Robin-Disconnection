@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface Post {
-  id: number;
+  id: string; // UUID from Supabase
   title: string;
   desc?: string;
   description?: string;
@@ -30,7 +30,7 @@ export function PostCard({ post }: PostCardProps) {
         <img
           src={post.image_url}
           alt={post.title}
-          className="w-full h-auto object-cover glitch-hover"
+          className="w-full h-auto object-cover"
         />
         <div className="scanline-overlay"></div>
       </div>

@@ -6,7 +6,7 @@ interface NavbarProps {
 }
 
 export function Navbar({ activeTab, onTabChange }: NavbarProps) {
-  const tabs = ['Home', 'Arts', 'Gifs', 'Sketches', 'Animes'];
+  const tabs = ['Home', 'Arts', 'Gifs', 'Sketches', 'Animations'];
 
   return (
     <nav className="navbar-container relative border-b-2 border-red-900 bg-black/90 backdrop-blur-sm">

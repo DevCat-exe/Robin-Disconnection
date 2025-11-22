@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface Post {
-  id: number;
+  id: string; // UUID from Supabase
   title: string;
   image_url: string;
   category?: string;
@@ -10,8 +10,7 @@ interface Post {
 
 interface GalleryItemProps {
   post: Post;
-  onItemClick: (category: string)
- => void;
+  onItemClick: (category: string, postId: string) => void;
 }
 
 const getRandomRotate = () => Math.floor(Math.random() * 17) - 8;
@@ -44,11 +43,11 @@ export function GalleryItem({ post, onItemClick }: GalleryItemProps) {
       whileHover={{
         rotate: rotate - 2,
         scale: 1.07,
-        boxShadow: '0 0 40px #ff1a1a55',
+        boxShadow: '0 0 40px rgba(139, 0, 0, 0.6)',
       }}
     >
       <div
-        onClick={() => onItemClick(post.category!)}
+        onClick={() => onItemClick(post.category!, post.id)}
         className={`${sizeClass} gallery-item`}
       >
         <div className="glitch-overlay"></div>
