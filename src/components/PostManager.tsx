@@ -23,7 +23,13 @@ export function PostManager() {
         isOpen: false,
         post: null,
     });
+    const [editModal, setEditModal] = useState<{ isOpen: boolean; post: Post | null }>({
+        isOpen: false,
+        post: null,
+    });
+    const [editForm, setEditForm] = useState({ title: '', date_created: '' });
     const [deleting, setDeleting] = useState(false);
+    const [updating, setUpdating] = useState(false);
 
     useEffect(() => {
         fetchPosts();
@@ -39,7 +45,7 @@ export function PostManager() {
                 const { data, error } = await supabase
                     .from(category)
                     .select('*')
-                    .order('created_at', { ascending: false });
+                    .order('created_at', { ascending: true });
 
                 if (error) {
                     console.error(`Error fetching ${category}:`, error);
@@ -87,6 +93,42 @@ export function PostManager() {
             console.error('Delete error:', error);
         } finally {
             setDeleting(false);
+        }
+    };
+
+    const openEditModal = (post: Post) => {
+        setEditModal({ isOpen: true, post });
+        setEditForm({
+            title: post.title,
+            date_created: post.date_created ? new Date(post.date_created).toISOString().split('T')[0] : ''
+        });
+    };
+
+    const handleUpdate = async () => {
+        if (!editModal.post) return;
+        setUpdating(true);
+        const loadingToast = toast.loading('Updating post...');
+
+        try {
+            const { error } = await supabase
+                .from(editModal.post.category)
+                .update({
+                    title: editForm.title,
+                    date_created: editForm.date_created
+                })
+                .eq('id', editModal.post.id);
+
+            toast.dismiss(loadingToast);
+
+            if (error) throw error;
+
+            toast.success('Post updated!');
+            setEditModal({ isOpen: false, post: null });
+            fetchPosts();
+        } catch (error: any) {
+            toast.error('Update failed: ' + error.message);
+        } finally {
+            setUpdating(false);
         }
     };
 
@@ -234,14 +276,21 @@ export function PostManager() {
                                         {post.date_created}
                                     </div>
 
-                                    {/* Delete Button */}
-                                    <button
-                                        onClick={() => setDeleteModal({ isOpen: true, post })}
-                                        className="w-full btn-horror-danger px-4 py-2 rounded-sm text-sm"
-
-                                    >
-                                        🗑️ DELETE POST
-                                    </button>
+                                    {/* Actions */}
+                                    <div className="flex gap-3 mt-4">
+                                        <button
+                                            onClick={() => openEditModal(post)}
+                                            className="flex-1 py-2 border-2 border-red-900/50 text-red-400 font-bold tracking-wider hover:bg-red-900/20 hover:border-red-500 transition-all text-sm uppercase"
+                                        >
+                                            ✏️ Edit
+                                        </button>
+                                        <button
+                                            onClick={() => setDeleteModal({ isOpen: true, post })}
+                                            className="flex-1 btn-horror-danger py-2 text-sm!"
+                                        >
+                                            🗑️ Delete
+                                        </button>
+                                    </div>
                                 </div>
 
                                 {/* Corner accents */}
@@ -262,6 +311,63 @@ export function PostManager() {
                 message={`Are you sure you want to delete "${deleteModal.post?.title}"? This action cannot be undone.`}
                 loading={deleting}
             />
+
+            {/* Edit Modal */}
+            <AnimatePresence>
+                {editModal.isOpen && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4">
+                        <motion.div 
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="bg-black border-2 border-red-600 w-full max-w-md p-6 relative shadow-[0_0_50px_rgba(220,38,38,0.3)]"
+                        >
+                            <div className="absolute top-0 left-0 w-full h-1 bg-red-600 animate-pulse" />
+                            <h2 className="text-2xl text-red-500 font-bold mb-6 tracking-widest text-center border-b border-red-900/50 pb-4">
+                                📝 EDIT POST
+                            </h2>
+                            
+                            <div className="space-y-6">
+                                <div>
+                                    <label className="block text-red-700 text-xs mb-2 tracking-widest font-bold uppercase">Title</label>
+                                    <input 
+                                        type="text" 
+                                        value={editForm.title}
+                                        onChange={e => setEditForm({...editForm, title: e.target.value})}
+                                        className="w-full bg-black/50 border border-red-900 p-3 text-red-100 focus:border-red-500 outline-none transition-colors"
+                                        placeholder="Post Title..."
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-red-700 text-xs mb-2 tracking-widest font-bold uppercase">Date Created</label>
+                                    <input 
+                                        type="date" 
+                                        value={editForm.date_created}
+                                        onChange={e => setEditForm({...editForm, date_created: e.target.value})}
+                                        className="w-full bg-black/50 border border-red-900 p-3 text-red-100 focus:border-red-500 outline-none transition-colors"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4 mt-8">
+                                <button 
+                                    onClick={() => setEditModal({ isOpen: false, post: null })}
+                                    className="flex-1 py-3 border border-red-900/50 text-red-700 hover:bg-red-900/10 hover:text-red-500 transition-colors tracking-widest uppercase font-bold text-sm"
+                                >
+                                    Cancel
+                                </button>
+                                <button 
+                                    onClick={handleUpdate}
+                                    disabled={updating}
+                                    className="flex-1 py-3 bg-red-900 hover:bg-red-700 text-white font-bold tracking-widest uppercase text-sm shadow-[0_0_15px_rgba(220,38,38,0.4)] transition-all"
+                                >
+                                    {updating ? 'Saving...' : 'Save Changes'}
+                                </button>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

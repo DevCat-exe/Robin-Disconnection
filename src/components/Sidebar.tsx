@@ -46,7 +46,7 @@ export function Sidebar({ posts, category, onPostSelect }: SidebarProps) {
           <motion.div
             key={post.id}
             onClick={() => onPostSelect(post)}
-            className="suggested-post-item cursor-pointer p-3 bg-black/80 border border-red-900/50 rounded-sm transition-all duration-300"
+            className="suggested-post-item cursor-pointer p-3 bg-black/80 border border-red-900/50 rounded-sm transition-all duration-300 hover:border-red-500"
             initial={{
               opacity: 0,
               y: 15,
@@ -58,11 +58,6 @@ export function Sidebar({ posts, category, onPostSelect }: SidebarProps) {
               rotate: getRandomRotate(index),
             }}
             transition={{ duration: 0.6 }}
-            whileHover={{
-              rotate: getRandomRotate(index) - 1,
-              scale: 1.02,
-              boxShadow: '0 0 20px rgba(139, 0, 0, 0.6)',
-            }}
           >
             <div className="suggested-thumbnail mb-2 overflow-hidden rounded-sm">
               <img

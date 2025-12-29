@@ -40,25 +40,17 @@ export function GalleryItem({ post, onItemClick }: GalleryItemProps) {
       initial={{ opacity: 0, y: 20, rotate }}
       animate={{ opacity: 1, y: 0, rotate }}
       transition={{ duration: 0.6 }}
-      whileHover={{
-        rotate: rotate - 2,
-        scale: 1.07,
-        boxShadow: '0 0 40px rgba(139, 0, 0, 0.6)',
-      }}
     >
       <div
         onClick={() => onItemClick(post.category!, post.id)}
-        className={`${sizeClass} gallery-item`}
+        className={`${sizeClass} gallery-item cursor-pointer transition-transform duration-200 hover:scale-[1.02]`}
       >
-        <div className="glitch-overlay"></div>
-        <div className="relative overflow-hidden rounded-md">
+        <div className="relative overflow-hidden rounded-md border border-red-900/30">
           <img
             src={post.image_url}
             alt={post.title}
-            className="gallery-item-image"
+            className="gallery-item-image w-full h-auto object-cover"
           />
-          <div className="scanline-overlay"></div>
-          <div className="blood-drip-effect"></div>
         </div>
         <div className="gallery-item-content">
           <div className="noise-background"></div>

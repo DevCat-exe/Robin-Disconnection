@@ -6,6 +6,7 @@ import { VHSOverlay } from '../components/VHSOverlay';
 import { Navbar } from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
 import { GalleryItem } from '../components/GalleryItem';
+import { Footer } from '../components/Footer';
 
 // Update interface for GalleryItem
 export interface GalleryItemPost extends Post {
@@ -58,7 +59,7 @@ export function Home() {
         const { data, error } = await supabase
           .from(category)
           .select('*')
-          .order('created_at', { ascending: false });
+          .order('created_at', { ascending: true });
 
         if (error) {
           console.error(`Error fetching ${category}:`, error);
@@ -92,7 +93,7 @@ export function Home() {
     }
   };
 
-  const handleItemClick = (category: string, postId?: number) => {
+  const handleItemClick = (category: string, postId?: string | number) => {
     if (postId) {
       navigate(`/${category}/${postId}`);
     } else {
@@ -118,7 +119,7 @@ export function Home() {
 
       {/* Fallback Background */}
       <div
-        className="fixed inset-0 bg-gradient-to-b from-black via-red-950/20 to-black"
+        className="fixed inset-0 bg-linear-to-b from-black via-red-950/20 to-black"
         style={{ zIndex: -2 }}
       />
 
@@ -160,7 +161,7 @@ export function Home() {
               }}
             >
               {allPosts.map((post) => (
-                <GalleryItem key={`${post.category}-${post.id}`} post={post} onItemClick={handleItemClick} />
+                <GalleryItem key={`${post.category}-${post.id}`} post={post} onItemClick={(cat, pid) => handleItemClick(cat, pid ? String(pid) : undefined)} />
               ))}
             </motion.div>
           </div>
@@ -168,14 +169,8 @@ export function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t-2 border-red-900 bg-black/90 backdrop-blur-sm p-6 text-center mt-16 relative z-20">
-        <div className="text-red-700 text-xs tracking-widest opacity-70">
-          ▓▓▓ DISCONNECTION © 2025 ▓▓▓
-        </div>
-        <div className="text-red-900 text-xs mt-2 opacity-50">
-          ALL RIGHTS CORRUPTED
-        </div>
-      </footer>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
