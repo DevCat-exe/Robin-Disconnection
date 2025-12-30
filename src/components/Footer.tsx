@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export function Footer() {
   return (
@@ -11,12 +11,18 @@ export function Footer() {
       </div>
 
       <div className="flex justify-center items-center space-x-6 text-red-600 font-bold relative z-50">
-        <a href="#" className="hover:text-white hover:underline transition-colors uppercase text-xs tracking-widest flex items-center gap-2">
-            <span>Instagram</span>
+        <a
+          href="https://www.instagram.com/tsunara.m?igsh=MWk3dmpod3pzanU0eQ=="
+          className="hover:text-white hover:underline transition-colors uppercase text-xs tracking-widest flex items-center gap-2"
+        >
+          <span>Instagram</span>
         </a>
         <span className="text-red-800">|</span>
-        <a href="#" className="hover:text-white hover:underline transition-colors uppercase text-xs tracking-widest flex items-center gap-2">
-            <span>YouTube</span>
+        <a
+          href="https://youtube.com/@tsunaram?si=6oAfzA-OHLP1gt_y"
+          className="hover:text-white hover:underline transition-colors uppercase text-xs tracking-widest flex items-center gap-2"
+        >
+          <span>YouTube</span>
         </a>
       </div>
     </footer>
